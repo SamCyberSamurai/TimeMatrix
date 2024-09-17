@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Time Lived on Earth</title>
+  <script src="script.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Custom hacker theme */
+    body {
+      background-color: #000;
+      color: #00FF00;
+      font-family: 'Courier New', monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center">
+  <div class="p-8 max-w-sm w-full text-center">
+    <h1 class="text-3xl font-bold mb-4">Time You've Lived on Earth</h1>
+    <div id="timeLived" class="text-2xl">Loading...</div>
+  </div>
+
+
+
+<script>
+function calculateTime() {
+  // Your birth date (4 Jan 2010)
+  const birthDate = new Date('2010-01-04T00:00:00');
+  const currentDate = new Date();
+
+  // Calculate the difference in milliseconds
+  const timeDifference = currentDate - birthDate;
+
+  // Convert the difference into years, months, days, hours, minutes, and seconds
+  const years = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 365));
+  const months = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+  const days = Math.floor((timeDifference % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+  // Display the result
+  document.getElementById('timeLived').textContent = 
+    `You have lived ${years} years, ${months} months, ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds.`;
+}
+
+// Automatically update the time every second
+setInterval(calculateTime, 1000);
+
+// Call the function when the page loads
+window.onload = calculateTime;
+
+</script>
+</body>
+</html>
